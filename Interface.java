@@ -14,7 +14,7 @@ public class Interface extends JFrame  {
 
     public void createFrame(){
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      setSize(300, 300);
+      setSize(300, 150);
       setTitle("Swing Counter");
       setVisible(true);    // show i
     }
@@ -49,22 +49,59 @@ public class Interface extends JFrame  {
     public void controlNameTab(){
         pasteArea = new JTextArea("            ");
         pasteButton = new JButton("Paste");
+        JScrollPane pasteAreaScroll = new JScrollPane(pasteArea);
 
         copyArea = new JTextArea("            ");
         copyButton = new JButton("Copy");
-        controlPanel.setLayout(new GridLayout());
-        controlPanel.add(pasteArea);
-        controlPanel.add(pasteButton);
-        controlPanel.add(copyArea);
-        controlPanel.add(copyButton);
-        controlPanel.add(convertButton);
+        JScrollPane copyAreaScroll = new JScrollPane(copyArea);
+
+        controlPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.ipady = 40;
+        c.ipadx = 170;
+        controlPanel.add(pasteAreaScroll, c);
+
+        c.gridx = 2;
+        c.gridy = 0;
+        c.ipady = 20;
+        c.ipadx = 0;
+        c.insets = new Insets(10,10,10,10);
+        controlPanel.add(pasteButton, c);
+
+        c.gridx = 1;
+        c.gridy = 1;
+        c.ipady = 40;
+        c.ipadx = 170;
+        c.insets = new Insets(0,0,0,0);
+        controlPanel.add(copyAreaScroll, c);
+
+        c.gridx = 2;
+        c.gridy = 1;
+        c.ipady = 20;
+        c.ipadx = 0;
+        c.insets = new Insets(10,10,10,10);
+        controlPanel.add(copyButton, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 40;      //make this component tall
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 3;
+
+        controlPanel.add(convertButton, c);
+
+
+        
     }
 
     public Interface(){
         controlNameTab();
         JFrame frame = new JFrame("Form Builder");
         frame.add(controlPanel, BorderLayout.CENTER);
-        frame.setSize(500, 500);
+        frame.setSize(500, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
