@@ -18,6 +18,8 @@ public class Controller {
 
     public void initApp(){
         mainGui.getPasteButton().addActionListener(e ->  pasteAction());
+        mainGui.getCopyButton().addActionListener(e ->  copyAction());
+        mainGui.getConvertButton().addActionListener(e -> setCopyArea());
     }
 
     public void pasteAction() {
@@ -27,7 +29,7 @@ public class Controller {
         if (clipboard.isDataFlavorAvailable(flavor)) {
         try {
             mainGui.setPasteArea((String) clipboard.getData(flavor));
-            model.setFieldName((String) clipboard.getData(flavor));
+            setCopyArea();
         } catch (UnsupportedFlavorException e) {
             System.out.println(e);
         } catch (IOException e) {
@@ -35,5 +37,18 @@ public class Controller {
         }
     }
 }
-    
+
+    public void setCopyArea(){
+        model.setFieldName(mainGui.getPasteArea().getText());
+        mainGui.setCopyArea(model.getControlName());
+        System.out.println(model.getControlName());
+    }
+
+    public void copyAction(){
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection stringSelection = new StringSelection(mainGui.getCopyArea());
+        clipboard.setContents(stringSelection, null);
+
+    }
 }
+
