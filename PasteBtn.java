@@ -1,12 +1,20 @@
+
 import javax.swing.*;
-import javax.swing.text.DefaultEditorKit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 public class PasteBtn extends JButton {
 
-    private static final long serialVersionUID = 1L;
+
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 
     public PasteBtn(JTextArea pasteArea) {
 
@@ -16,16 +24,25 @@ public class PasteBtn extends JButton {
             @Override
             public void actionPerformed(ActionEvent evt) {
 
-                String pasteText = new DefaultEditorKit.PasteAction().toString();
-
-                if(pasteText != null){
-                    pasteArea.setText(pasteText);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                DataFlavor flavor = DataFlavor.stringFlavor;
+                if (clipboard.isDataFlavorAvailable(flavor)) {
+                try {
+                    pasteArea.setText( (String) clipboard.getData(flavor));
+                } catch (UnsupportedFlavorException e) {
+                    System.out.println(e);
+                } catch (IOException e) {
+                    System.out.println(e);
                 }
+                
             }
-            });
     }
+});
+}
+}
 
-}    
+
+    
 
 
 
