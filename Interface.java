@@ -112,7 +112,7 @@ public class Interface extends JFrame  {
         controlNameTab();
         JFrame frame = new JFrame("Form Builder");
         frame.add(controlPanel, BorderLayout.CENTER);
-        frame.setSize(300, 280);
+        frame.setSize(300, 290);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
