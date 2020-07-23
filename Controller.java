@@ -42,6 +42,7 @@ public class Controller {
         model.setFieldName(mainGui.getPasteArea().getText());
         mainGui.setCopyArea(model.getControlName());
         System.out.println(model.getControlName());
+        mainGui.setCounterLabel(model.getControlNameLength());
     }
 
     public void copyAction(){

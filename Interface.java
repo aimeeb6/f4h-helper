@@ -10,6 +10,7 @@ public class Interface extends JFrame  {
     private JTextArea copyArea;
     private JButton copyButton; 
     private JButton convertButton = new JButton("Convert");
+    private JLabel charCounterLabel = new JLabel("The control name character count is ", SwingConstants.CENTER);
 
 
     public void createFrame(){
@@ -22,6 +23,10 @@ public class Interface extends JFrame  {
     public JButton getPasteButton() {
         return pasteButton;
        }
+
+    public void setCounterLabel(String text){
+        this.charCounterLabel.setText("The control name character count is " + text);
+    }
     
     public void setPasteArea(String pasteText) {
         this.pasteArea.setText(pasteText);
@@ -47,11 +52,11 @@ public class Interface extends JFrame  {
     }
 
     public void controlNameTab(){
-        pasteArea = new JTextArea("            ");
+        pasteArea = new JTextArea();
         pasteButton = new JButton("Paste");
         JScrollPane pasteAreaScroll = new JScrollPane(pasteArea);
 
-        copyArea = new JTextArea("            ");
+        copyArea = new JTextArea();
         copyButton = new JButton("Copy");
         JScrollPane copyAreaScroll = new JScrollPane(copyArea);
 
@@ -86,11 +91,17 @@ public class Interface extends JFrame  {
         controlPanel.add(copyButton, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 0;      //make this component tall
+        c.gridwidth = 3;
+        c.gridx = 1;
+        c.gridy = 3;
+        controlPanel.add(charCounterLabel, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 40;      //make this component tall
         c.gridwidth = 3;
         c.gridx = 0;
-        c.gridy = 3;
-
+        c.gridy = 4;
         controlPanel.add(convertButton, c);
 
 
@@ -101,7 +112,7 @@ public class Interface extends JFrame  {
         controlNameTab();
         JFrame frame = new JFrame("Form Builder");
         frame.add(controlPanel, BorderLayout.CENTER);
-        frame.setSize(500, 300);
+        frame.setSize(300, 280);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

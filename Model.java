@@ -10,13 +10,19 @@ public class Model {
     }
 
     public void createControlName(){
-        this.controlName = fieldName.replaceAll("[^a-z0-9]","");
-        this.controlName = this.controlName.replace(' ', '-');
+        this.controlName = fieldName.toLowerCase();
+        this.controlName = controlName.replaceAll("[^a-z0-9]/","");
+        this.controlName = controlName.replace(' ', '-');
+        setControlNameLength();
     }
 
-    public setControlNameLenght(){
+    public void setControlNameLength(){
         int len = controlName.length();
-        this.controlNameLength = controlName + Integer.toString(len);
+        this.controlNameLength = Integer.toString(len);
+    }
+
+    public String getControlNameLength(){
+       return this.controlNameLength;
     }
 
     public String getControlName(){
