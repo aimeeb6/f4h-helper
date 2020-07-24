@@ -190,29 +190,29 @@ public class Interface extends JFrame  {
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 3;
-        c.insets = new Insets(5,5,5,5);
+        c.insets = new Insets(0,3,2,0);
         selectPanel.add(delimiterPanel, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = 1;
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 1;
         c.ipady = 30;
-        c.ipadx = 60;
+        c.ipadx = 170;
         c.insets = new Insets(0,0,0,0);
         selectPanel.add(selectPasteAreaScroll, c);
 
         c.gridx = 2;
         c.gridy = 1;
-        c.ipady = 10;
+        c.ipady = 20;
         c.ipadx = 0;
-        c.insets = new Insets(20,20,20,20);
+        c.insets = new Insets(10,20,5,20);
         selectPanel.add(selectPasteButton, c);
 
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 2;
-        c.ipady = 50;
-        c.ipadx = 90;
+        c.ipady = 30;
+        c.ipadx = 170;
         c.insets = new Insets(0,0,0,0);
         selectPanel.add(selectCopyAreaScroll, c);
 
@@ -220,12 +220,13 @@ public class Interface extends JFrame  {
         c.gridy = 2;
         c.ipady = 20;
         c.ipadx = 0;
-        c.insets = new Insets(10,10,10,10);
+        c.insets = new Insets(10,20,5,20);
         selectPanel.add(selectCopyButton, c);
 
 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;      //make this component tall
+        c.insets = new Insets(0,15,10,15);
+        c.ipady = 30;      //make this component tall
         c.gridwidth = 3;
         c.gridx = 0;
         c.gridy = 3;
@@ -238,14 +239,14 @@ public class Interface extends JFrame  {
         controlNameTab();
         selectTab();
         tabbedPane.add("Control Name",controlPanel);
-        tabbedPane.add("Select Panel",selectPanel); 
+        tabbedPane.add("Select",selectPanel); 
     }
 
     public Interface(){
         createTabbedPane();
         JFrame frame = new JFrame("Form Builder");
         frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setSize(300, 315);
+        frame.setSize(325, 320);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
         frame.toFront();
