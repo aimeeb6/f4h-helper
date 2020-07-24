@@ -44,7 +44,6 @@ public class Controller {
         try {
             mainGui.setSelectPasteArea((String) clipboard.getData(flavor));
             setSelectCopyArea();
-            model.splitSelectList();
         } catch (UnsupportedFlavorException e) {
             System.out.println(e);
         } catch (IOException e) {
@@ -61,6 +60,7 @@ public class Controller {
 
     public void setSelectCopyArea(){
         model.setSelectName(mainGui.getSelectPasteArea().getText());
+        model.splitSelectList();
         mainGui.setSelectCopyArea(model.getSelectCodeString());
         mainGui.setCounterLabel(model.getControlNameLength());
     }

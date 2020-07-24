@@ -20,24 +20,26 @@ public class Model {
     public String getSelectCodeString(){
         return selectCodeString;
     }
+    
+    public String selectCode(){
+        for(String v : splitLine){
+            this.selectCodeString = selectCodeString.concat("<item>\n");
+            this.selectCodeString = selectCodeString.concat("\t" +"<label>"+v+"</label>\n");
+            this.selectCodeString = selectCodeString.concat("\t"+"<value>"+v.replace(' ', '-')+"</value>\n");
+            this.selectCodeString = selectCodeString.concat("\t"+"<hint/>\n");
+            this.selectCodeString = selectCodeString.concat("</item>\n");
+            this.selectCodeString = selectCodeString.concat("\n");
+        }
+        System.out.println(selectCodeString);
+        return this.selectCodeString;
+    }
 
     public void splitSelectList(){
         splitLine = selectsList.split("\\n");
         selectCode();
     }
 
-    public String selectCode(){
-        for(String v : splitLine){
-            selectCodeString = selectCodeString.concat("\t\t" +"<item>\n");
-            selectCodeString = selectCodeString.concat("\t\t\t\t" +"<label>"+v+"</label>\n");
-            selectCodeString = selectCodeString.concat("\t\t\t\t"+"<value>"+v.replace(' ', '-')+"</value>\n");
-            selectCodeString = selectCodeString.concat("\t\t\t\t"+"<hint/>\n");
-            selectCodeString = selectCodeString.concat("\t\t" +"</item>\n");
-            selectCodeString = selectCodeString.concat("\n");
-        }
-        System.out.println(selectCodeString);
-        return selectCodeString;
-    }
+    
 
     public String getSelectCode(){
         return selectCodeString;
