@@ -8,6 +8,7 @@ public class Model {
     private String selectsList;
     private String splitLine[];
     private String selectCodeString = "  ";
+    private String delimiter = "\n";
     
     public void setFieldName(String inputText){
         fieldName = inputText;
@@ -36,11 +37,14 @@ public class Model {
     }
 
     public void splitSelectList(){
-        splitLine = selectsList.split("\\n");
+        splitLine = selectsList.split(delimiter);
         selectCode();
     }
 
-    
+    public void setDelimiter(String d){
+        this.delimiter = d;
+
+    }
 
     public String getSelectCode(){
         return selectCodeString;
@@ -65,18 +69,4 @@ public class Model {
     public String getControlName(){
         return controlName;
     }
-
-    /*
-      <item>
-                                <label>First choice</label>
-                                <value>first-choice</value>
-                                <hint/>
-                            </item>
-
-    */
 }
-/**
- *first choucee
- * aieme ee
- * bane rama
- */

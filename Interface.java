@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class Interface extends JFrame  {
 
@@ -16,6 +17,10 @@ public class Interface extends JFrame  {
     private JTextArea copyArea;
     private JButton copyButton; 
     private JButton convertButton = new JButton("Convert");
+    private JButton convertSelectButton = new JButton("Convert");
+    private JLabel delimiterLabel = new JLabel("Change delimiter");
+    private JCheckBox backSlashDelimiter;
+    private JCheckBox commaDelimiter;
     private JLabel charCounterLabel = new JLabel("The control name character count is ", SwingConstants.CENTER);
 
 
@@ -54,6 +59,10 @@ public class Interface extends JFrame  {
         return convertButton;
     }
 
+    public JButton getSelectConvertButton(){
+        return convertSelectButton;
+    }
+
     public void setCounterLabel(String text){
         this.charCounterLabel.setText("The control name character count is " + text);
     }
@@ -81,6 +90,22 @@ public class Interface extends JFrame  {
         return this.selectPasteArea;
     }
 
+    public JCheckBox getBackSlashDelimiter(){
+        return backSlashDelimiter;
+    }
+
+    public JCheckBox getCommaDelimiter(){
+        return commaDelimiter;
+    }
+
+    public void setBackSlashDelimiter(boolean b) {
+        this.backSlashDelimiter.setSelected(b);
+    }
+
+    public void setCommaDelimiter(boolean b) {
+        this.commaDelimiter.setSelected(b);
+    }
+
     
 
     public void controlNameTab(){
@@ -90,7 +115,7 @@ public class Interface extends JFrame  {
 
         copyArea = new JTextArea();
         copyButton = new JButton("Copy");
-        JScrollPane copyAreaScroll = new JScrollPane(copyArea);
+        JScrollPane copyAreaScroll = new JScrollPane(copyArea);                                                                                                                
 
         controlPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -147,35 +172,65 @@ public class Interface extends JFrame  {
         selectCopyButton = new JButton("Copy");
         JScrollPane selectCopyAreaScroll = new JScrollPane(selectCopyArea);
 
+        JPanel delimiterPanel = new JPanel();
+        delimiterPanel.setLayout(new FlowLayout());
+
+        TitledBorder titled = new TitledBorder("Change delimiter");
+        delimiterPanel.setBorder(titled);
+        backSlashDelimiter = new JCheckBox("Backslash (/)");  
+        commaDelimiter = new JCheckBox("Comma (,)"); 
+
+        delimiterPanel.add(backSlashDelimiter);
+        delimiterPanel.add(commaDelimiter);
+
         selectPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.ipady = 80;
-        c.ipadx = 130;
+        c.gridwidth = 3;
+        c.insets = new Insets(5,5,5,5);
+        selectPanel.add(delimiterPanel, c);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.ipady = 50;
+        c.ipadx = 90;
+        c.gridwidth = 1;
+        c.insets = new Insets(0,0,0,0);
         selectPanel.add(selectPasteAreaScroll, c);
 
         c.gridx = 2;
-        c.gridy = 0;
-        c.ipady = 50;
+        c.gridy = 1;
+        c.ipady = 20;
         c.ipadx = 0;
         c.insets = new Insets(10,10,10,10);
         selectPanel.add(selectPasteButton, c);
 
         c.gridx = 0;
-        c.gridy = 1;
-        c.ipady = 80;
-        c.ipadx = 130;
+        c.gridy = 2;
+        c.ipady = 50;
+        c.ipadx = 90;
         c.insets = new Insets(0,0,0,0);
         selectPanel.add(selectCopyAreaScroll, c);
 
         c.gridx = 2;
-        c.gridy = 1;
-        c.ipady = 50;
+        c.gridy = 2;
+        c.ipady = 20;
         c.ipadx = 0;
         c.insets = new Insets(10,10,10,10);
         selectPanel.add(selectCopyButton, c);
+
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 40;      //make this component tall
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 3;
+        selectPanel.add(convertSelectButton, c);
+
     }
 
     public void createTabbedPane(){
@@ -190,7 +245,7 @@ public class Interface extends JFrame  {
         createTabbedPane();
         JFrame frame = new JFrame("Form Builder");
         frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setSize(300, 290);
+        frame.setSize(300, 315);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
         frame.toFront();

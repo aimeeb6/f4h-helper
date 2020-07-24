@@ -22,6 +22,8 @@ public class Controller {
         mainGui.getConvertButton().addActionListener(e -> setCopyArea());
         mainGui.getSelectPasteButton().addActionListener(e -> selectPasteAction());
         mainGui.getSelectCopyButton().addActionListener(e ->  copyAction(mainGui.getSelectCopyArea()));
+        mainGui.getBackSlashDelimiter().addItemListener(e -> backSlashStateChanged());
+        mainGui.getCommaDelimiter().addItemListener(e -> commaStateChanged());
     }
 
     public void pasteAction() {
@@ -53,6 +55,14 @@ public class Controller {
     }
 }
 
+    public void backSlashStateChanged(){
+        mainGui.getCommaDelimiter().setSelected(false);
+    }
+
+    public void commaStateChanged(){
+        mainGui.getBackSlashDelimiter().setSelected(false);
+    }
+
     public void setCopyArea(){
         model.setFieldName(mainGui.getPasteArea().getText());
         mainGui.setCopyArea(model.getControlName());
@@ -60,10 +70,22 @@ public class Controller {
     }
 
     public void setSelectCopyArea(){
+        checkDelimiterChanged();
         model.setSelectName(mainGui.getSelectPasteArea().getText());
         model.splitSelectList();
         mainGui.setSelectCopyArea(model.getSelectCodeString());
         mainGui.setCounterLabel(model.getControlNameLength());
+    }
+
+    public void checkDelimiterChanged(){
+        if(mainGui.getBackSlashDelimiter().isSelected()){
+            model.setDelimiter("/");
+        }else if(mainGui.getCommaDelimiter().isSelected()){
+            model.setDelimiter(",");
+        }else{
+            model.setDelimiter("\n");
+        }
+
     }
 
     public void copyAction(String t){
