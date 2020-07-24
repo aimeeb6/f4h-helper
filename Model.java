@@ -14,8 +14,9 @@ public class Model {
         createControlName();
     }
     public void setSelectName(String inputText){
-        selectsList = "";
-        selectsList = inputText;
+        this.selectsList = "";
+        this.selectCodeString = "  ";
+        this.selectsList = inputText;
     }
 
     public String getSelectCodeString(){
@@ -74,3 +75,8 @@ public class Model {
 
     */
 }
+/**
+ *first choucee
+ * aieme ee
+ * bane rama
+ */

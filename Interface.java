@@ -152,27 +152,27 @@ public class Interface extends JFrame  {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
         c.gridy = 0;
-        c.ipady = 40;
-        c.ipadx = 200;
+        c.ipady = 80;
+        c.ipadx = 130;
         selectPanel.add(selectPasteAreaScroll, c);
 
         c.gridx = 2;
         c.gridy = 0;
-        c.ipady = 20;
+        c.ipady = 50;
         c.ipadx = 0;
         c.insets = new Insets(10,10,10,10);
         selectPanel.add(selectPasteButton, c);
 
         c.gridx = 0;
         c.gridy = 1;
-        c.ipady = 40;
-        c.ipadx = 200;
+        c.ipady = 80;
+        c.ipadx = 130;
         c.insets = new Insets(0,0,0,0);
         selectPanel.add(selectCopyAreaScroll, c);
 
         c.gridx = 2;
         c.gridy = 1;
-        c.ipady = 20;
+        c.ipady = 50;
         c.ipadx = 0;
         c.insets = new Insets(10,10,10,10);
         selectPanel.add(selectCopyButton, c);
