@@ -14,6 +14,7 @@ public class Model {
         createControlName();
     }
     public void setSelectName(String inputText){
+        selectsList = "";
         selectsList = inputText;
     }
 
@@ -30,7 +31,6 @@ public class Model {
             this.selectCodeString = selectCodeString.concat("</item>\n");
             this.selectCodeString = selectCodeString.concat("\n");
         }
-        System.out.println(selectCodeString);
         return this.selectCodeString;
     }
 

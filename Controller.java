@@ -18,9 +18,10 @@ public class Controller {
 
     public void initApp(){
         mainGui.getPasteButton().addActionListener(e ->  pasteAction());
-        mainGui.getCopyButton().addActionListener(e ->  copyAction());
+        mainGui.getCopyButton().addActionListener(e ->  copyAction(mainGui.getCopyArea()));
         mainGui.getConvertButton().addActionListener(e -> setCopyArea());
         mainGui.getSelectPasteButton().addActionListener(e -> selectPasteAction());
+        mainGui.getSelectCopyButton().addActionListener(e ->  copyAction(mainGui.getSelectCopyArea()));
     }
 
     public void pasteAction() {
@@ -65,9 +66,9 @@ public class Controller {
         mainGui.setCounterLabel(model.getControlNameLength());
     }
 
-    public void copyAction(){
+    public void copyAction(String t){
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        StringSelection stringSelection = new StringSelection(mainGui.getCopyArea());
+        StringSelection stringSelection = new StringSelection(t);
         clipboard.setContents(stringSelection, null);
 
     }
