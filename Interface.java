@@ -5,6 +5,12 @@ public class Interface extends JFrame  {
 
     private static final long serialVersionUID = 1L;
     public JPanel controlPanel = new JPanel();
+    public JPanel selectPanel = new JPanel();
+    public JTabbedPane tabbedPane;
+    private JTextArea selectPasteArea;
+    private JButton selectPasteButton;
+    private JTextArea selectCopyArea;
+    private JButton selectCopyButton;
     private JTextArea pasteArea;
     private JButton pasteButton;
     private JTextArea copyArea;
@@ -22,22 +28,19 @@ public class Interface extends JFrame  {
 
     public JButton getPasteButton() {
         return pasteButton;
-       }
-
-    public void setCounterLabel(String text){
-        this.charCounterLabel.setText("The control name character count is " + text);
     }
-    
+
     public void setPasteArea(String pasteText) {
         this.pasteArea.setText(pasteText);
     }
+
     public JTextArea getPasteArea() {
         return this.pasteArea;
     }
 
     public JButton getCopyButton() {
         return copyButton;
-       }
+    }
     
     public void setCopyArea(String copyText) {
         this.copyArea.setText(copyText);
@@ -50,6 +53,35 @@ public class Interface extends JFrame  {
     public JButton getConvertButton(){
         return convertButton;
     }
+
+    public void setCounterLabel(String text){
+        this.charCounterLabel.setText("The control name character count is " + text);
+    }
+
+    public JButton getSelectPasteButton(){
+        return selectPasteButton;
+    }
+    public void setSelectPasteArea(String pasteText) {
+        this.selectPasteArea.setText(pasteText);
+    }
+    
+    public JButton getSelectCopyButton() {
+        return selectCopyButton;
+    }
+    
+    public void setSelectCopyArea(String copyText) {
+        this.selectCopyArea.setText(copyText);
+    }
+
+    public String getSelectCopyArea() {
+        return this.selectCopyArea.getText();
+    }
+    
+    public JTextArea getSelectPasteArea() {
+        return this.selectPasteArea;
+    }
+
+    
 
     public void controlNameTab(){
         pasteArea = new JTextArea();
@@ -104,16 +136,64 @@ public class Interface extends JFrame  {
         c.gridy = 4;
         controlPanel.add(convertButton, c);
 
+    }
 
-        
+    public void selectTab(){
+        selectPasteArea = new JTextArea();
+        selectPasteButton = new JButton("Paste");
+        JScrollPane selectPasteAreaScroll = new JScrollPane(selectPasteArea);
+
+        selectCopyArea = new JTextArea();
+        selectCopyButton = new JButton("Copy");
+        JScrollPane selectCopyAreaScroll = new JScrollPane(selectCopyArea);
+
+        selectPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.ipady = 40;
+        c.ipadx = 170;
+        selectPanel.add(selectPasteAreaScroll, c);
+
+        c.gridx = 2;
+        c.gridy = 0;
+        c.ipady = 20;
+        c.ipadx = 0;
+        c.insets = new Insets(10,10,10,10);
+        selectPanel.add(selectPasteButton, c);
+
+        c.gridx = 1;
+        c.gridy = 1;
+        c.ipady = 40;
+        c.ipadx = 170;
+        c.insets = new Insets(0,0,0,0);
+        selectPanel.add(selectCopyAreaScroll, c);
+
+        c.gridx = 2;
+        c.gridy = 1;
+        c.ipady = 20;
+        c.ipadx = 0;
+        c.insets = new Insets(10,10,10,10);
+        selectPanel.add(selectCopyButton, c);
+    }
+
+    public void createTabbedPane(){
+        tabbedPane = new JTabbedPane();  
+        controlNameTab();
+        selectTab();
+        tabbedPane.add("Control Name",controlPanel);
+        tabbedPane.add("Select Panel",selectPanel); 
     }
 
     public Interface(){
-        controlNameTab();
+        createTabbedPane();
         JFrame frame = new JFrame("Form Builder");
-        frame.add(controlPanel, BorderLayout.CENTER);
+        frame.add(tabbedPane, BorderLayout.CENTER);
         frame.setSize(300, 290);
         frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
+        frame.toFront();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }

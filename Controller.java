@@ -20,10 +20,10 @@ public class Controller {
         mainGui.getPasteButton().addActionListener(e ->  pasteAction());
         mainGui.getCopyButton().addActionListener(e ->  copyAction());
         mainGui.getConvertButton().addActionListener(e -> setCopyArea());
+        mainGui.getSelectPasteButton().addActionListener(e -> selectPasteAction());
     }
 
     public void pasteAction() {
-        System.out.println("test");
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         DataFlavor flavor = DataFlavor.stringFlavor;
         if (clipboard.isDataFlavorAvailable(flavor)) {
@@ -37,11 +37,31 @@ public class Controller {
         }
     }
 }
+    public void selectPasteAction(){
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        DataFlavor flavor = DataFlavor.stringFlavor;
+        if (clipboard.isDataFlavorAvailable(flavor)) {
+        try {
+            mainGui.setSelectPasteArea((String) clipboard.getData(flavor));
+            setSelectCopyArea();
+            model.splitSelectList();
+        } catch (UnsupportedFlavorException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+}
 
     public void setCopyArea(){
         model.setFieldName(mainGui.getPasteArea().getText());
         mainGui.setCopyArea(model.getControlName());
-        System.out.println(model.getControlName());
+        mainGui.setCounterLabel(model.getControlNameLength());
+    }
+
+    public void setSelectCopyArea(){
+        model.setSelectName(mainGui.getSelectPasteArea().getText());
+        mainGui.setSelectCopyArea(model.getSelectCodeString());
         mainGui.setCounterLabel(model.getControlNameLength());
     }
 
