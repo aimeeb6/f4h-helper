@@ -27,7 +27,7 @@ public class Model {
         for(String v : splitLine){
             this.selectCodeString = selectCodeString.concat("<item>\n");
             this.selectCodeString = selectCodeString.concat("\t" +"<label>"+v+"</label>\n");
-            this.selectCodeString = selectCodeString.concat("\t"+"<value>"+v.replace(' ', '-')+"</value>\n");
+            this.selectCodeString = selectCodeString.concat("\t"+"<value>"+(v.toLowerCase().replaceAll("[^a-z0-9\\s]","").replace(' ', '-'))+"</value>\n");
             this.selectCodeString = selectCodeString.concat("\t"+"<hint/>\n");
             this.selectCodeString = selectCodeString.concat("</item>\n");
             this.selectCodeString = selectCodeString.concat("\n");
