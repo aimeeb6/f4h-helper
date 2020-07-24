@@ -20,6 +20,7 @@ public class Controller {
         mainGui.getPasteButton().addActionListener(e ->  pasteAction());
         mainGui.getCopyButton().addActionListener(e ->  copyAction(mainGui.getCopyArea()));
         mainGui.getConvertButton().addActionListener(e -> setCopyArea());
+        mainGui.getSelectConvertButton().addActionListener(e -> setSelectCopyArea());
         mainGui.getSelectPasteButton().addActionListener(e -> selectPasteAction());
         mainGui.getSelectCopyButton().addActionListener(e ->  copyAction(mainGui.getSelectCopyArea()));
         mainGui.getBackSlashDelimiter().addItemListener(e -> backSlashStateChanged());

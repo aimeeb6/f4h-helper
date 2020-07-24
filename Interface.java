@@ -39,6 +39,11 @@ public class Interface extends JFrame  {
         this.pasteArea.setText(pasteText);
     }
 
+    public JButton SelectConvertButton(){
+        return convertSelectButton;
+
+    }
+
     public JTextArea getPasteArea() {
         return this.pasteArea;
     }
