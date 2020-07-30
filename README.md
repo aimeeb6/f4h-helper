@@ -21,4 +21,8 @@ The select options can be separated my many different delimiters. The default is
    2. Place the text you wish to convert into the first text box 
       * If you do this using the paste button then conversion will automatically complete. 
    2. The press convert to convert the text. 
-   3. Press copy to copy the text from second text box to your clipboard
+   3. Press copy to save the text from second text box to your clipboard
+   4. Find the relevant question's code in the source code of the form. 
+   5. Copy the code from <item> to <item> tag and paste the newly generated code. 
+
+      ![Control Name](Images/selectCodeExample.gif)
